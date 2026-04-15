@@ -1,0 +1,193 @@
+// Version: 1.0.0
+type BookingSource__711332711 = {#Direct; #OTA; #WalkIn};
+type BookingStatus__96719981 =
+  {#Cancelled; #CheckedIn; #CheckedOut; #Confirmed; #NoShow; #Pending};
+type Booking__628731632 =
+  {
+    var actualCheckIn : ?Timestamp__301639476;
+    var actualCheckOut : ?Timestamp__301639476;
+    var checkIn : Timestamp__301639476;
+    var checkOut : Timestamp__301639476;
+    createdAt : Timestamp__301639476;
+    var earlyCheckIn : Bool;
+    var guestEmail : Text;
+    guestId : EntityId__892221652;
+    var guestName : Text;
+    var guestPhone : Text;
+    hotelId : EntityId__892221652;
+    id : EntityId__892221652;
+    var lateCheckOut : Bool;
+    var notes : Text;
+    var numGuests : Nat;
+    var roomId : EntityId__892221652;
+    var source : BookingSource__711332711;
+    var status : BookingStatus__96719981
+  };
+type ChannelConfig__206334632 =
+  {
+    var baseRate : Float;
+    var channel : OTAChannel__291976939;
+    hotelId : EntityId__892221652;
+    id : EntityId__892221652;
+    var isActive : Bool;
+    var lastSync : ?Timestamp__301639476;
+    var overbookingProtection : Bool;
+    var rateOverride : ?Float;
+    var syncStatus : SyncStatus__151107313
+  };
+type ChargeCategory__887369303 = {#Discount; #Extra; #Room; #Tax};
+type EntityId__892221652 = Nat;
+type FolioCharge__208031184 =
+  {
+    amount : Float;
+    category : ChargeCategory__887369303;
+    date : Timestamp__301639476;
+    description : Text;
+    id : EntityId__892221652
+  };
+type FolioStatus__690652845 = {#Open; #Settled};
+type Folio__326563020 =
+  {
+    bookingId : EntityId__892221652;
+    var charges : [FolioCharge__208031184];
+    guestId : EntityId__892221652;
+    hotelId : EntityId__892221652;
+    id : EntityId__892221652;
+    var payments : [Payment__64787808];
+    var status : FolioStatus__690652845
+  };
+type GuestTag__279123429 = {#Corporate; #New; #Regular; #VIP};
+type Guest__1013009172 =
+  {
+    var address : Text;
+    var country : Text;
+    createdAt : Timestamp__301639476;
+    var email : Text;
+    id : EntityId__892221652;
+    var loyaltyPoints : Nat;
+    var name : Text;
+    var notes : Text;
+    var phone : Text;
+    var preferences : Text;
+    var tags : [GuestTag__279123429]
+  };
+type Hotel__88975725 =
+  {
+    var address : Text;
+    var checkInTime : Text;
+    var checkOutTime : Text;
+    var city : Text;
+    var currency : Text;
+    var email : Text;
+    id : EntityId__892221652;
+    var name : Text;
+    var phone : Text;
+    var totalRooms : Nat
+  };
+type HousekeepingTask__748705807 =
+  {
+    var assignedStaffId : ?EntityId__892221652;
+    var completedAt : ?Timestamp__301639476;
+    createdAt : Timestamp__301639476;
+    hotelId : EntityId__892221652;
+    id : EntityId__892221652;
+    var notes : Text;
+    var priority : Nat;
+    var roomId : EntityId__892221652;
+    var status : TaskStatus__537038292
+  };
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type OTAChannel__291976939 =
+  {#Airbnb; #BookingCom; #Direct; #Expedia; #MakeMyTrip};
+type PaymentMethod__46913440 = {#BankTransfer; #Card; #Cash; #UPI};
+type Payment__64787808 =
+  {
+    amount : Float;
+    date : Timestamp__301639476;
+    id : EntityId__892221652;
+    method : PaymentMethod__46913440;
+    referenceId : Text
+  };
+type RoomStatus__859027865 =
+  {#Clean; #Dirty; #Maintenance; #Occupied; #OutOfOrder};
+type RoomType__526206327 = {#Deluxe; #Presidential; #Standard; #Suite};
+type Room__838483819 =
+  {
+    var amenities : [Text];
+    var capacity : Nat;
+    var floor : Nat;
+    hotelId : EntityId__892221652;
+    id : EntityId__892221652;
+    var isActive : Bool;
+    var number : Text;
+    var pricePerNight : Float;
+    var roomType : RoomType__526206327;
+    var status : RoomStatus__859027865
+  };
+type StaffRole__334678748 = {#Admin; #FrontDesk; #Housekeeping; #Manager};
+type StaffStatus__1072640461 = {#Active; #Inactive};
+type Staff__191166072 =
+  {
+    var email : Text;
+    hotelId : EntityId__892221652;
+    id : EntityId__892221652;
+    var name : Text;
+    var phone : Text;
+    var role : StaffRole__334678748;
+    var status : StaffStatus__1072640461
+  };
+type SyncStatus__151107313 = {#OutOfSync; #Synced};
+type TaskStatus__537038292 = {#Done; #InProgress; #Pending};
+type Timestamp__301639476 = Int;
+actor {
+  stable bookings :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Booking__628731632]];
+      var elementIndex : Nat__490723111
+    };
+  stable channels :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?ChannelConfig__206334632]];
+      var elementIndex : Nat__490723111
+    };
+  stable folios :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Folio__326563020]];
+      var elementIndex : Nat__490723111
+    };
+  stable guests :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Guest__1013009172]];
+      var elementIndex : Nat__490723111
+    };
+  stable hotels :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Hotel__88975725]];
+      var elementIndex : Nat__490723111
+    };
+  stable idCounter : {var value : Nat};
+  stable rooms :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Room__838483819]];
+      var elementIndex : Nat__490723111
+    };
+  stable staff :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Staff__191166072]];
+      var elementIndex : Nat__490723111
+    };
+  stable tasks :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?HousekeepingTask__748705807]];
+      var elementIndex : Nat__490723111
+    }
+};

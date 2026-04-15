@@ -1,0 +1,258 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "Inter", sans-serif;
+    --font-body: "Inter", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+    --radius: 0.625rem;
+
+    --background: 0.98 0 0;
+    --foreground: 0.13 0 0;
+    --card: 0.99 0 0;
+    --card-foreground: 0.12 0 0;
+    --popover: 0.99 0 0;
+    --popover-foreground: 0.12 0 0;
+
+    --primary: 0.68 0.19 48;
+    --primary-foreground: 0.12 0 0;
+
+    --secondary: 0.93 0 0;
+    --secondary-foreground: 0.22 0 0;
+    --muted: 0.93 0 0;
+    --muted-foreground: 0.48 0 0;
+
+    --accent: 0.68 0.19 48;
+    --accent-foreground: 0.12 0 0;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.88 0 0;
+    --input: 0.92 0 0;
+    --ring: 0.68 0.19 48;
+
+    --chart-1: 0.55 0.22 25;
+    --chart-2: 0.72 0.16 256;
+    --chart-3: 0.68 0.19 48;
+    --chart-4: 0.62 0.27 22;
+    --chart-5: 0.65 0.24 298;
+
+    --sidebar: 0.97 0 0;
+    --sidebar-foreground: 0.15 0 0;
+    --sidebar-primary: 0.68 0.19 48;
+    --sidebar-primary-foreground: 0.12 0 0;
+    --sidebar-accent: 0.93 0 0;
+    --sidebar-accent-foreground: 0.22 0 0;
+    --sidebar-border: 0.88 0 0;
+    --sidebar-ring: 0.68 0.19 48;
+  }
+
+  .dark {
+    --background: 0.12 0.01 255;
+    --foreground: 0.94 0 0;
+    --card: 0.17 0.01 255;
+    --card-foreground: 0.94 0 0;
+    --popover: 0.2 0.01 255;
+    --popover-foreground: 0.94 0 0;
+
+    --primary: 0.68 0.19 48;
+    --primary-foreground: 0.1 0 0;
+
+    --secondary: 0.22 0.01 255;
+    --secondary-foreground: 0.84 0 0;
+    --muted: 0.22 0.01 255;
+    --muted-foreground: 0.56 0 0;
+
+    --accent: 0.68 0.19 48;
+    --accent-foreground: 0.1 0 0;
+
+    --destructive: 0.62 0.22 25;
+    --destructive-foreground: 0.94 0 0;
+
+    --border: 0.26 0.01 255;
+    --input: 0.24 0.01 255;
+    --ring: 0.68 0.19 48;
+
+    --chart-1: 0.68 0.19 48;
+    --chart-2: 0.62 0.18 265;
+    --chart-3: 0.65 0.22 150;
+    --chart-4: 0.65 0.24 298;
+    --chart-5: 0.55 0.22 25;
+
+    --sidebar: 0.155 0.01 255;
+    --sidebar-foreground: 0.9 0 0;
+    --sidebar-primary: 0.68 0.19 48;
+    --sidebar-primary-foreground: 0.1 0 0;
+    --sidebar-accent: 0.22 0.01 255;
+    --sidebar-accent-foreground: 0.84 0 0;
+    --sidebar-border: 0.24 0.01 255;
+    --sidebar-ring: 0.68 0.19 48;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  html.light {
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  /* Status badge base */
+  .status-badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium border;
+  }
+
+  /* Booking statuses */
+  .badge-confirmed {
+    @apply bg-emerald-500/15 text-emerald-400 border-emerald-500/25;
+  }
+  .badge-pending {
+    @apply bg-amber-500/15 text-amber-400 border-amber-500/25;
+  }
+  .badge-cancelled {
+    @apply bg-red-500/15 text-red-400 border-red-500/25;
+  }
+  .badge-noshow {
+    @apply bg-zinc-500/15 text-zinc-400 border-zinc-500/25;
+  }
+  .badge-checkedin {
+    @apply bg-blue-500/15 text-blue-400 border-blue-500/25;
+  }
+  .badge-checkedout {
+    @apply bg-violet-500/15 text-violet-400 border-violet-500/25;
+  }
+
+  /* Room statuses */
+  .badge-clean {
+    @apply bg-emerald-500/15 text-emerald-400 border-emerald-500/25;
+  }
+  .badge-dirty {
+    @apply bg-red-500/15 text-red-400 border-red-500/25;
+  }
+  .badge-occupied {
+    @apply bg-blue-500/15 text-blue-400 border-blue-500/25;
+  }
+  .badge-outoforder {
+    @apply bg-orange-500/15 text-orange-400 border-orange-500/25;
+  }
+  .badge-maintenance {
+    @apply bg-purple-500/15 text-purple-400 border-purple-500/25;
+  }
+
+  /* Task statuses */
+  .badge-inprogress {
+    @apply bg-sky-500/15 text-sky-400 border-sky-500/25;
+  }
+  .badge-done {
+    @apply bg-emerald-500/15 text-emerald-400 border-emerald-500/25;
+  }
+
+  /* Skeleton shimmer animation */
+  .skeleton {
+    @apply bg-muted animate-pulse rounded-md;
+  }
+
+  /* Page fade-in */
+  .page-enter {
+    animation: pageEnter 0.2s ease-out forwards;
+  }
+
+  /* Amber glow for active indicators */
+  .amber-glow {
+    box-shadow: 0 0 8px 0 oklch(0.68 0.19 48 / 0.4);
+  }
+
+  /* Card hover lift */
+  .card-hover {
+    @apply transition-smooth hover:shadow-elevated hover:-translate-y-0.5;
+  }
+
+  /* Nav item active */
+  .nav-active {
+    @apply bg-primary/10 text-primary border-l-2 border-primary;
+  }
+}
+
+@layer components {
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-smooth cursor-pointer hover:bg-sidebar-accent;
+    color: oklch(var(--sidebar-foreground) / 0.7);
+  }
+
+  .nav-item:hover {
+    color: oklch(var(--sidebar-foreground));
+  }
+
+  .nav-item.active {
+    @apply bg-primary/10 text-primary;
+  }
+
+  .kpi-card {
+    @apply bg-card border border-border rounded-xl p-5 transition-smooth hover:border-primary/30 hover:shadow-card;
+  }
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}

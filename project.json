@@ -1,0 +1,29 @@
+{
+  "overview": "A modern, premium Hotel Management System for multi-property hotel groups. Features a full suite of modules including reservations, front desk check-in/out, housekeeping, billing with GST compliance, channel management, analytics, guest CRM, and admin settings — all with a high-end dark SaaS UI with amber/gold accents.",
+  "features": [
+    "Multi-property dashboard with KPI cards and live activity feed",
+    "Reservation management with calendar view, Gantt timeline, and booking CRUD",
+    "Front desk check-in/check-out with walk-in support",
+    "Housekeeping room status board with staff assignment and task tracking",
+    "Billing and invoicing with GST-compliant folios and multiple payment methods",
+    "Channel manager for OTA inventory and rate management",
+    "Reports and analytics with occupancy trends, revenue charts, and key hotel metrics",
+    "Guest CRM with profiles, stay history, tags, notes, and loyalty points",
+    "Settings and user management with role-based access control",
+    "Admin management panel for full CRUD of rooms, staff, guests, and bookings"
+  ],
+  "category": "productivity",
+  "tags": [
+    "hotel-management",
+    "hospitality",
+    "saas",
+    "multi-property",
+    "reservations",
+    "crm",
+    "analytics",
+    "dark-mode",
+    "typescript",
+    "motoko"
+  ],
+  "last_updated": "2026-04-14T11:02:42.310Z"
+}
